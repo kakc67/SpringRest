@@ -1,0 +1,6 @@
+package com.spring.data.jpa.repository;
+
+public interface TodoRepository extends CrudRepository<Todo, Long> {
+
+
+}

@@ -1,0 +1,25 @@
+package com.spring.data.jpa.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+public class PersistenceContext {
+	
+	DataSource dataSource(Environment env) {
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setDriverClassName(env.getRequiredProperty("db.driver"));
+		hikariConfig.setJdbcUrl(env.getRequiredProperty("db.url"));
+		hikariConfig.setUsername(env.getRequiredProperty("db.username"));
+		hikariConfig.setPassword(env.getRequiredProperty("db.password"));
+		
+		return new HikariDataSource(hikariConfig);
+		
+	}
+
+}
